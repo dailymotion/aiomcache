@@ -1,10 +1,13 @@
 import asyncio
+import logging
 from collections import namedtuple
 
 __all__ = ['MemcachePool']
 
 
 _connection = namedtuple('connection', ['reader', 'writer'])
+
+logger = logging.getLogger(__name__)
 
 
 class MemcachePool:
