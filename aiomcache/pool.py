@@ -74,9 +74,15 @@ class MemcachePool:
         self._in_use.remove(conn)
 
         if conn.reader.at_eof() or conn.reader.exception():
+            logger.error("+" * 60)
+            logger.error("aiomcache.pool._do_close WAS HERE !!!")
+            logger.error("+" * 60)
             self._do_close(conn)
         else:
             # This should never fail because poolsize=maxsize
+            logger.error("+" * 60)
+            logger.error("aiomcache.pool.release WAS HERE !!!")
+            logger.error("+" * 60)
             self._pool.put_nowait(conn)
 
     @asyncio.coroutine
